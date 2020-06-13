@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_authentication.*
@@ -32,6 +34,16 @@ class AuthenticationActivity : AppCompatActivity() {
                 startActivity(intent)
             }else{
                 Toast.makeText(applicationContext, "Check password or username !",Toast.LENGTH_LONG).show();
+            }
+        }
+
+        showHideBtn.setOnClickListener {
+            if(showHideBtn.text.toString().equals("Show")){
+                passId.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                showHideBtn.text = "Hide"
+            } else{
+                passId.transformationMethod = PasswordTransformationMethod.getInstance()
+                showHideBtn.text = "Show"
             }
         }
     }
